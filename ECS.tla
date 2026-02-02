@@ -11,6 +11,7 @@ VARIABLES
     ticketPool,         \* Function: {Short, Long} -> Integer (available tickets)
     waitSets            \* Function: {Short, Long} -> Set of Requests
 
+
 \* State Enums
 States == {
     "Idle",             \* Not in system
@@ -156,3 +157,32 @@ Next ==
 Spec == Init /\ [][Next]_Vars /\ WF_Vars(Next)
 
 =============================================================================
+
+You can play with a Spectacle visualization of this spec on your browser by clicking this link: 
+https://will62794.github.io/spectacle/#!/home?specpath=https%3A%2F%2Fraw.githubusercontent.c[…]kets%5D=3&constants%5BLongTickets%5D=1&trace=4e7bc28d
+
+This is the initial state. click on any enabled action to take it, you can go back and forward on the right pane to explain, and you can share a URL back with anyone to point to an interesting state or trace.
+
+---------------------------
+
+Summary:
+The `ticketPool` state is a function mapping each ticket type (`Short` and `Long`) to
+the number of currently available tickets of that type. It represents the real-time
+capacity for granting immediate execution slots: a positive value means an arriving
+request can acquire a ticket and transition to a `Running` state (decrementing the
+pool), while a zero value causes the request to be placed in the corresponding
+`waitSets`. The model enforces capacity bounds (via `ShortTickets` and `LongTickets`)
+and conserves tickets through the `AttemptAcquire` and `ReleaseTicket` helpers,
+ensuring tickets are never created or lost outside those transitions.
+
+The `waitSets` state is a function mapping each ticket type to the set of requests
+currently waiting for that type. When a request attempts to acquire a ticket but the
+pool is empty, it is added to the corresponding `waitSets[type]`. On release, if the
+wait set for that type is non-empty, the `ReleaseTicket` helper nondeterministically
+chooses a waiter, removes it from the set, and moves that request into the appropriate
+`Running` state (a handoff). If there are no waiters, the ticket is returned to the
+`ticketPool`. 
+
+-coverage 1 -workers 6
+
+\* Modification History
