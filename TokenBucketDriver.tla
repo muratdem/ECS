@@ -94,5 +94,5 @@ NoStarvation == \A r \in Requests : <>(reqState[r] \in {"DONE", "DROPPED"})
 -depth -1 for going until execution done 
 -depth 100 for going for 100 steps
 
-To run the MLFQ TLA+ model at Spectacle for visualization:
-https://will62794.github.io/spectacle/
+To run this TLA+ model at Spectacle for visualization, click the following link:
+https://will62794.github.io/spectacle/#!/home?specpath=https%3A%2F%2Fraw.githubusercontent.com%2Fmuratdem%2FECS%2Frefs%2Fheads%2Fmain%2FTokenBucketDriver.tla&initPred=Init&nextPred=Next&explodedConstantExpr=Requests&constants%5BRequests%5D=%7B%22R1%22%2C%20%22R2%22%2C%20%22R3%22%7D&constants%5BMaxRetries%5D=2&constants%5BBucketCapacity%5D=10&constants%5BSuccessReward%5D=1&constants%5BRetryCost%5D=10&trace=568b31a6
