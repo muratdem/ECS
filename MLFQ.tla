@@ -166,4 +166,7 @@ MC_TimeAllotment ==
 
 
 =============================================================================
+To run the MLFQ TLA+ model at Spectacle for visualization:
+https://will62794.github.io/spectacle/#!/home?specpath=https%3A%2F%2Fraw.githubusercontent.com%2Fmuratdem%2FECS%2Frefs%2Fheads%2Fmain%2FMLFQ.tla&initPred=Init&nextPred=Next&constants%5BJobs%5D=%7B%22A%22%2C%20%22B%22%7D&constants%5BPriorities%5D=1..3&constants%5BTimeAllotment%5D=%3C%3C2%2C%204%2C%208%3E%3E&constants%5BQuantum%5D=%3C%3C1%2C%202%2C%204%3E%3E&constants%5BBoostInterval%5D=5&constants%5BMaxTime%5D=20&explodedConstantExpr=Jobs
+ 
 
